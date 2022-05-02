@@ -40,8 +40,4 @@ const checkAvailability = async () => {
   transporter.close();
 };
 
-cron.schedule('0 * * * *', async () => {
-  console.log('Running cron job');
-  await checkAvailability();
-  console.log('Cron job completed');
-});
+checkAvailability();

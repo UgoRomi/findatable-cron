@@ -12,6 +12,9 @@
   "volta": {
     "node": "18.0.0"
   },
+  "engines": {
+    "node": "18.0.0"
+  },
   "devDependencies": {
     "@types/node": "^17.0.30",
     "ts-node": "^10.7.0",

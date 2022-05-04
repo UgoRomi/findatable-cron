@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 import { format, add } from 'date-fns';
 import nodemailer from 'nodemailer';
-import cron from 'node-cron';
-import { apiResponse } from './types';
 dotenv.config();
 
 const checkAvailability = async () => {
@@ -23,10 +21,10 @@ const checkAvailability = async () => {
   console.log(`Checking availability from ${formattedFrom} to ${formattedTo}`);
 
   const url = `https://api.rsvp-popup.com/api/public/restaurants/2906/availability?seats=2&from=${formattedFrom}&to=${formattedTo}`;
-  const body: apiResponse[] = await (await fetch(url)).json();
+  const body = await (await fetch(url)).json();
   const availableDays = body.filter((day) => day.IsSoldOut === false);
   console.log(`Found ${availableDays.length} available days`);
-  if (availableDays && availableDays.length > 0) {
+  if (availableDays && availableDays.length === 0) {
     transporter.sendMail({
       from: 'ugo.romi@icloud.com',
       to: 'ugo.romi@icloud.com',

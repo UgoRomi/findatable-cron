@@ -24,15 +24,6 @@ const checkAvailability = async () => {
   const body = await (await fetch(url)).json();
   const availableDays = body.filter((day) => day.IsSoldOut === false);
   console.log(`Found ${availableDays.length} available days`);
-  if (availableDays && availableDays.length === 0) {
-    transporter.sendMail({
-      from: 'ugo.romi@icloud.com',
-      to: 'ugo.romi@icloud.com',
-      subject: `0 POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA`,
-      text: ':(',
-      html: ':(',
-    });
-  }
 
   for (const availableDay of availableDays) {
     transporter.sendMail({

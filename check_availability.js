@@ -29,7 +29,7 @@ const checkAvailability = async () => {
     transporter.sendMail({
       from: 'ugo.romi@icloud.com',
       to: 'ugo.romi@icloud.com',
-      subject: `POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA IL GIORNO ${availableDay.Date.toLocaleDateString()}`,
+      subject: `POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA IL GIORNO ${new Date(availableDay.Date).toLocaleDateString('it-IT')}`,
       text: 'per prenotare vai su https://reservations.osteriafrancescana.it/',
       html: '<p>per prenotare vai su <a href="https://reservations.osteriafrancescana.it/">https://reservations.osteriafrancescana.it/</a></p>',
     });

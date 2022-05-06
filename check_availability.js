@@ -43,6 +43,7 @@ const checkAvailability = async () => {
   }
 
   transporter.close();
+	console.log("done")
 };
 
 checkAvailability();

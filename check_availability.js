@@ -21,15 +21,22 @@ const checkAvailability = async () => {
   console.log(`Checking availability from ${formattedFrom} to ${formattedTo}`);
 
   const url = `https://api.rsvp-popup.com/api/public/restaurants/2906/availability?seats=2&from=${formattedFrom}&to=${formattedTo}`;
+  console.log(`calling ${url}`);
   const body = await (await fetch(url)).json();
-  const availableDays = body.filter((day) => day.IsSoldOut === false);
+  const availableDays = body.filter((day) => day.Status === 'AVAILABLE');
   console.log(`Found ${availableDays.length} available days`);
 
-  for (const availableDay of availableDays) {
+  if (availableDays.length > 0) {
+    let emailSubject = '';
+    for (const availableDay of availableDays) {
+      emailSubject += `${new Date(availableDay.Date).toLocaleDateString(
+        'it-IT'
+      )} `;
+    }
     transporter.sendMail({
       from: 'ugo.romi@icloud.com',
       to: 'ugo.romi@icloud.com',
-      subject: `POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA IL GIORNO ${new Date(availableDay.Date).toLocaleDateString('it-IT')}`,
+      subject: `POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA IL/I GIORNO/I ${emailSubject}`,
       text: 'per prenotare vai su https://reservations.osteriafrancescana.it/',
       html: '<p>per prenotare vai su <a href="https://reservations.osteriafrancescana.it/">https://reservations.osteriafrancescana.it/</a></p>',
     });

@@ -15,7 +15,7 @@ const checkAvailability = async () => {
   const today = new Date();
   const formattedFrom = format(today, 'yyyy-M-dd');
 
-  const to = add(today, { months: 7 });
+  const to = new Date(2023, 10, 1); // 1 Nov 2023
   const formattedTo = format(to, 'yyyy-M-dd');
 
   console.log(`Checking availability from ${formattedFrom} to ${formattedTo}`);
@@ -35,7 +35,7 @@ const checkAvailability = async () => {
     }
     transporter.sendMail({
       from: 'ugo.romi@icloud.com',
-      to: 'ugo.romi@icloud.com',
+      to: 'ugo.romi@gmail.com',
       subject: `POSTI DISPONIBILI PRESSO OSTERIA FRANCESCANA IL/I GIORNO/I ${emailSubject}`,
       text: 'per prenotare vai su https://reservations.osteriafrancescana.it/',
       html: '<p>per prenotare vai su <a href="https://reservations.osteriafrancescana.it/">https://reservations.osteriafrancescana.it/</a></p>',
@@ -43,7 +43,7 @@ const checkAvailability = async () => {
   }
 
   transporter.close();
-	console.log("done")
+  console.log('done');
 };
 
 checkAvailability();

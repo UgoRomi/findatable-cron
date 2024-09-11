@@ -2,18 +2,15 @@
   "name": "of-checker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "check_availability.js",
   "scripts": {
     "check-availability": "node check_availability.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ugo Romi ugo.romi@gmail.com",
   "license": "ISC",
-  "volta": {
-    "node": "18.0.0"
-  },
   "engines": {
-    "node": "18.0.0"
+    "node": "20"
   },
   "dependencies": {
     "@types/node-cron": "^3.0.1",
